@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B0907" />
+  <meta name="description" content="Inscrição para a Escola de Moços e Profetas — Tabernáculo de Profetas." />
+  <title>Escola de Moços e Profetas | Inscrição</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-glow page-glow--one"></div>
+  <div class="page-glow page-glow--two"></div>
+
+  <header class="hero">
+    <div class="hero__overlay"></div>
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <span class="eyebrow">TABERNÁCULO DE PROFETAS</span>
+        <h1>Escola de<br><span>Moços e Profetas</span></h1>
+        <p class="hero__lead">Preparando uma geração para os propósitos de Deus.</p>
+
+        <div class="hero__chips">
+          <span>07/11 • 16h às 22h</span>
+          <span>08/11 • 08h às 11h</span>
+        </div>
+
+        <p class="hero__verse">“Levantando moços que ouvem, discernem e profetizam.” <strong>1 Samuel 2:26</strong></p>
+
+        <a class="btn btn--primary" href="#inscricao">Quero me inscrever</a>
+      </div>
+
+      <figure class="hero__poster">
+        <img src="assets/folder-evento.png" alt="Folder oficial da Escola de Moços e Profetas" />
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section__heading">
+          <span class="eyebrow">FORMAÇÃO DOS 5 MINISTÉRIOS</span>
+          <h2>Coluna Profética</h2>
+          <p>Uma imersão de formação, serviço, palavra, fidelidade, entrega, família e chamado.</p>
+        </div>
+
+        <div class="themes-grid">
+          <article class="theme-card"><span>01</span><h3>Ramá</h3><p>O Serviço e o Altar</p></article>
+          <article class="theme-card"><span>02</span><h3>Betel</h3><p>A Constância e a Fidelidade</p></article>
+          <article class="theme-card"><span>03</span><h3>Jericó</h3><p>A entrega que representa</p></article>
+          <article class="theme-card"><span>04</span><h3>Gilgal</h3><p>A Palavra Rhema</p></article>
+          <article class="theme-card"><span>05</span><h3>Gibeá</h3><p>Família e Chamado</p></article>
+        </div>
+
+        <div class="pillars">
+          <span>Palavra</span>
+          <span>Oração</span>
+          <span>Comunhão</span>
+          <span>Crescimento</span>
+          <span>Propósito</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container event-card">
+        <div>
+          <span class="eyebrow">INFORMAÇÕES DO EVENTO</span>
+          <h2>Reserve sua vaga</h2>
+        </div>
+
+        <div class="event-info">
+          <div>
+            <small>Dia 1</small>
+            <strong>07/11</strong>
+            <span>das 16h às 22h</span>
+          </div>
+          <div>
+            <small>Dia 2</small>
+            <strong>08/11</strong>
+            <span>das 08h às 11h</span>
+          </div>
+          <div>
+            <small>Local</small>
+            <strong>Av. Alberto Byington, 2354</strong>
+            <span>Vila Maria Alta — SP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--form" id="inscricao">
+      <div class="container registration">
+        <div class="registration__copy">
+          <span class="eyebrow">INSCRIÇÃO</span>
+          <h2>Faça seu cadastro</h2>
+          <p>Preencha seus dados abaixo. Após o envio, você receberá uma confirmação na própria página.</p>
+
+          <div class="security-note">
+            <strong>Privacidade</strong>
+            <p>Seus dados serão usados somente para organização e comunicação deste evento.</p>
+          </div>
+        </div>
+
+        <form class="form-card" id="registrationForm" novalidate>
+          <div class="form-group">
+            <label for="fullName">Nome completo</label>
+            <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Digite seu nome completo" required minlength="3">
+            <small class="field-error" data-error-for="fullName"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefone / WhatsApp</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required>
+            <small class="field-error" data-error-for="phone"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="voce@email.com" required>
+            <small class="field-error" data-error-for="email"></small>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" id="consent" required>
+            <span>Autorizo o uso dos meus dados para fins de organização e comunicação deste evento.</span>
+          </label>
+
+          <button class="btn btn--primary btn--full" id="submitButton" type="submit">
+            Confirmar inscrição
+          </button>
+
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer__content">
+      <div>
+        <strong>Tabernáculo de Profetas</strong>
+        <span>Escola de Moços e Profetas</span>
+      </div>
+      <small>Discípulos hoje, referências amanhã.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

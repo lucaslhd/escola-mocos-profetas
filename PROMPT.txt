@@ -1,0 +1,97 @@
+Crie uma landing page premium, responsiva e elegante para o evento “Escola de Moços e Profetas”, do “Tabernáculo de Profetas”, usando como referência visual o folder oficial fornecido.
+
+OBJETIVO
+A página deve apresentar o evento e permitir inscrição com:
+- Nome completo
+- Telefone / WhatsApp
+- E-mail
+- Checkbox de consentimento LGPD
+
+TECNOLOGIA
+- HTML5, CSS3 e JavaScript puro
+- Compatível com GitHub Pages
+- Banco de dados Supabase para centralizar inscrições
+- Nunca expor service_role; usar somente a chave anon com RLS
+- Não permitir leitura pública da tabela de inscritos
+- Validação de formulário no front-end
+- Mensagem de sucesso e erro
+- Bloqueio de inscrições duplicadas por e-mail/telefone no mesmo evento
+- Código organizado em index.html, styles.css, app.js, config.js e supabase.sql
+
+CONTEÚDO DO EVENTO
+Título:
+Escola de Moços e Profetas
+
+Instituição:
+Tabernáculo de Profetas
+
+Frase principal:
+“Preparando uma geração para os propósitos de Deus.”
+
+Verso:
+“Levantando moços que ouvem, discernem e profetizam.”
+1 Samuel 2:26
+
+Temas:
+1. Ramá — O Serviço e o Altar
+2. Betel — A Constância e a Fidelidade
+3. Jericó — A entrega que representa
+4. Gilgal — A Palavra Rhema
+5. Gibeá — Família e Chamado
+
+Datas e horários:
+07/11 — das 16h às 22h
+08/11 — das 08h às 11h
+
+Local:
+Av. Alberto Byington, 2354
+Vila Maria Alta — SP
+
+Formação:
+Formação dos 5 Ministérios — Coluna Profética
+
+Pilares:
+Palavra
+Oração
+Comunhão
+Crescimento
+Propósito
+
+Rodapé:
+“Discípulos hoje, referências amanhã.”
+
+DESIGN SYSTEM
+Inspirar-se no folder:
+- Fundo principal preto/marrom muito escuro
+- Dourado metálico como cor de destaque
+- Tons creme/pergaminho para textos secundários
+- Atmosfera bíblica, cinematográfica, nobre e profética
+- Tipografia de título serifada clássica (ex.: Cinzel)
+- Tipografia de interface limpa (ex.: Inter)
+- Cards translúcidos escuros com bordas douradas discretas
+- Gradientes dourados e sombras suaves
+- Layout premium, sem aparência genérica
+- Excelente experiência mobile
+- CTA “Quero me inscrever” no hero e “Confirmar inscrição” no formulário
+- Usar o folder oficial como imagem visual de apoio, sem alterar seu conteúdo
+
+SEGURANÇA E BANCO
+Criar SQL para tabela `registrations` com:
+- id
+- created_at
+- full_name
+- phone
+- email
+- consent
+- event_slug
+Ativar RLS.
+Permitir apenas INSERT para usuário anônimo.
+Não permitir SELECT público.
+Criar índices UNIQUE por event_slug + lower(email) e event_slug + phone.
+
+A página deve estar pronta para publicação em GitHub Pages e o README deve ensinar:
+1. Como criar o Supabase
+2. Onde colocar URL e chave anon
+3. Como executar o SQL
+4. Como publicar no GitHub Pages
+5. Como consultar e exportar inscritos no painel do Supabase
