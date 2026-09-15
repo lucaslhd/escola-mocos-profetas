@@ -211,9 +211,12 @@
       loginStatus.className = "auth-status";
       loginStatus.textContent = "Solicitando e-mail de recuperação...";
 
-      try {
+        const targetRedirect = window.location.origin.includes("localhost")
+          ? "http://localhost:3000/admin.html"
+          : window.location.href.split("#")[0].split("?")[0];
+
         const { error } = await supabaseClient.auth.resetPasswordForEmail(emailTrimmed, {
-          redirectTo: "http://localhost:3000/admin.html"
+          redirectTo: targetRedirect
         });
 
         if (error) throw error;
