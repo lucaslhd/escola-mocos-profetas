@@ -36,6 +36,14 @@ with check (
 -- Assim os visitantes não conseguem ler a lista de inscritos.
 -- Para ver quantidade e dados, use o painel do Supabase autenticado.
 
+-- Permite ao painel administrativo (usuários autenticados via Supabase Auth) ler os cadastros.
+drop policy if exists "authenticated can select registrations" on public.registrations;
+create policy "authenticated can select registrations"
+on public.registrations
+for select
+to authenticated
+using (true);
+
 -- Consulta para contar inscritos no painel:
 -- select count(*) as total_inscritos
 -- from public.registrations

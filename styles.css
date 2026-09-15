@@ -132,6 +132,7 @@ h1 span {
 .hero__verse strong { color: var(--cream); font-style: normal; }
 
 .hero__poster {
+  position: relative;
   margin:0;
   border:1px solid rgba(255,230,190,.22);
   border-radius: 26px;
@@ -139,7 +140,49 @@ h1 span {
   box-shadow: var(--shadow);
   transform: rotate(1.2deg);
 }
-.hero__poster img { width:100%; aspect-ratio: 2 / 3; object-fit: cover; }
+.hero__poster img,
+.hero__poster video {
+  width:100%;
+  height:100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.sound-toggle {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 5;
+  background: rgba(14, 10, 7, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  color: var(--cream);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.sound-toggle:hover {
+  background: rgba(28, 20, 12, 0.92);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+}
+.sound-toggle:active {
+  transform: translateY(0);
+}
 
 .btn {
   display:inline-flex;
@@ -371,5 +414,11 @@ footer {
   .pillars { grid-template-columns:1fr; }
   .pillars span { border-right:0; }
   .form-card { padding:20px; }
+  .sound-toggle {
+    bottom: 12px;
+    right: 12px;
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
   .footer__content { flex-direction:column; align-items:flex-start; }
 }

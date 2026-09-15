@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B0907" />
+  <title>Área Administrativa | Escola de Moços e Profetas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="page-glow page-glow--one"></div>
+  <div class="page-glow page-glow--two"></div>
+
+  <!-- TELA DE LOGIN (Visível por padrão até autenticar) -->
+  <main class="auth-wrapper" id="loginView">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="eyebrow">TABERNÁCULO DE PROFETAS</span>
+        <h1>Área <span>Administrativa</span></h1>
+        <p>Acesso restrito para gestão de inscrições da Escola de Moços e Profetas.</p>
+      </div>
+
+      <form class="auth-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginEmail">E-mail do administrador</label>
+          <input
+            id="loginEmail"
+            name="email"
+            type="email"
+            autocomplete="username"
+            placeholder="admin@tabernaculo.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Senha</label>
+          <input
+            id="loginPassword"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button class="btn btn--primary btn--full" id="loginSubmit" type="submit">
+          Entrar no painel
+        </button>
+
+        <div class="forgot-password-wrapper">
+          <button type="button" class="forgot-link" id="forgotPasswordBtn">Esqueci minha senha</button>
+        </div>
+
+        <div class="auth-status" id="loginStatus" role="status" aria-live="polite"></div>
+      </form>
+
+      <div class="auth-footer">
+        <a href="index.html" class="back-link">← Voltar ao site oficial</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- TELA DE REDEFINIÇÃO DE SENHA (Exibida exclusivamente no evento PASSWORD_RECOVERY) -->
+  <main class="auth-wrapper hidden" id="resetPasswordView">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="eyebrow">RECUPERAÇÃO DE CONTA</span>
+        <h1>Criar <span>nova senha</span></h1>
+        <p>Defina uma nova senha segura para acessar a Área Administrativa.</p>
+      </div>
+
+      <form class="auth-form" id="resetPasswordForm" novalidate>
+        <div class="form-group">
+          <label for="newPassword">Nova senha</label>
+          <div class="password-input-wrapper">
+            <input
+              id="newPassword"
+              name="newPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Mínimo 8 caracteres"
+              minlength="8"
+              required
+            />
+            <button type="button" class="toggle-password-btn" data-target="newPassword" title="Mostrar/ocultar senha" aria-label="Mostrar ou ocultar senha">
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirmar nova senha</label>
+          <div class="password-input-wrapper">
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Repita a nova senha"
+              minlength="8"
+              required
+            />
+            <button type="button" class="toggle-password-btn" data-target="confirmPassword" title="Mostrar/ocultar senha" aria-label="Mostrar ou ocultar senha">
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--full" id="savePasswordSubmit" type="submit">
+          Salvar nova senha
+        </button>
+
+        <div class="auth-status" id="resetStatus" role="status" aria-live="polite"></div>
+      </form>
+
+      <div class="auth-footer">
+        <button type="button" class="back-link" id="cancelResetBtn" style="background:none; border:none; cursor:pointer;">
+          ← Cancelar e voltar ao login
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- PAINEL DASHBOARD (Oculto até confirmação de sessão ativa) -->
+  <div class="dashboard-wrapper hidden" id="dashboardView">
+    <header class="dash-nav">
+      <div class="container dash-nav__inner">
+        <div class="dash-brand">
+          <span class="eyebrow">TABERNÁCULO DE PROFETAS</span>
+          <h2>Painel de <span>Inscrições</span></h2>
+        </div>
+
+        <div class="dash-user">
+          <div class="user-badge">
+            <span class="user-icon">👤</span>
+            <span class="user-email" id="userEmailBadge">admin</span>
+          </div>
+          <button class="btn btn--outline btn--sm" id="logoutBtn" type="button">
+            Sair
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container dash-content">
+      <!-- Métricas -->
+      <section class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-label">Total de Inscritos</span>
+          <strong class="stat-value" id="statTotal">—</strong>
+          <small class="stat-hint">Cadastros confirmados</small>
+        </article>
+
+        <article class="stat-card">
+          <span class="stat-label">Inscritos Hoje</span>
+          <strong class="stat-value" id="statToday">—</strong>
+          <small class="stat-hint" id="todayDateHint">Nesta data</small>
+        </article>
+
+        <article class="stat-card stat-card--accent">
+          <span class="stat-label">Evento</span>
+          <strong class="stat-value stat-value--text">07 e 08/11</strong>
+          <small class="stat-hint">Vila Maria Alta — SP</small>
+        </article>
+      </section>
+
+      <!-- Barra de Ações / Filtro -->
+      <section class="action-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Buscar por nome, telefone ou e-mail..."
+            aria-label="Filtrar inscritos"
+          />
+          <button id="clearSearchBtn" class="clear-btn hidden" type="button" title="Limpar busca">✕</button>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn btn--secondary" id="refreshBtn" type="button" title="Atualizar dados">
+            ↻ Atualizar
+          </button>
+          <button class="btn btn--primary" id="exportCsvBtn" type="button">
+            ⬇ Exportar CSV
+          </button>
+        </div>
+      </section>
+
+      <!-- Status / Contagem de Resultados -->
+      <div class="list-meta">
+        <span id="resultCount">Carregando inscritos...</span>
+      </div>
+
+      <!-- Tabela de Inscrições -->
+      <section class="table-container">
+        <table class="registrations-table" id="registrationsTable">
+          <thead>
+            <tr>
+              <th>Data / Hora</th>
+              <th>Nome Completo</th>
+              <th>Telefone / WhatsApp</th>
+              <th>E-mail</th>
+            </tr>
+          </thead>
+          <tbody id="registrationsTbody">
+            <tr>
+              <td colspan="4" class="table-empty">Carregando dados com segurança...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer class="dash-footer">
+      <div class="container dash-footer__inner">
+        <small>Tabernáculo de Profetas • Escola de Moços e Profetas • Gestão Interna</small>
+        <a href="index.html" class="back-link">Ir para o site do evento →</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

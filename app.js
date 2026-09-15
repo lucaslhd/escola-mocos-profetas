@@ -118,3 +118,23 @@ form.addEventListener("submit", async (e) => {
     submitButton.textContent = "Confirmar inscrição";
   }
 });
+
+// Controle de som do vídeo de apresentação
+const heroVideo = document.getElementById("heroVideo");
+const soundToggle = document.getElementById("soundToggle");
+
+if (heroVideo && soundToggle) {
+  soundToggle.addEventListener("click", () => {
+    if (heroVideo.muted) {
+      heroVideo.muted = false;
+      heroVideo.play().catch(() => {});
+      soundToggle.textContent = "🔇 Silenciar";
+      soundToggle.setAttribute("aria-label", "Silenciar");
+    } else {
+      heroVideo.muted = true;
+      soundToggle.textContent = "🔊 Ativar som";
+      soundToggle.setAttribute("aria-label", "Ativar som");
+    }
+  });
+}
+
