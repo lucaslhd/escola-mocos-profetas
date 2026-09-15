@@ -1,6 +1,8 @@
 const form = document.getElementById("registrationForm");
 const submitButton = document.getElementById("submitButton");
 const formStatus = document.getElementById("formStatus");
+const whatsappConfirmationArea = document.getElementById("whatsappConfirmationArea");
+const whatsappConfirmBtn = document.getElementById("whatsappConfirmBtn");
 
 function normalizePhone(value) {
   return value.replace(/\D/g, "");
@@ -81,14 +83,20 @@ form.addEventListener("submit", async (e) => {
   submitButton.textContent = "Enviando...";
   formStatus.textContent = "";
 
+  if (whatsappConfirmationArea) {
+    whatsappConfirmationArea.classList.add("hidden");
+  }
+
   try {
     const supabaseClient = window.supabase.createClient(
       cfg.SUPABASE_URL,
       cfg.SUPABASE_ANON_KEY
     );
 
+    const registeredFullName = document.getElementById("fullName").value.trim();
+
     const payload = {
-      full_name: document.getElementById("fullName").value.trim(),
+      full_name: registeredFullName,
       phone: normalizePhone(document.getElementById("phone").value),
       email: document.getElementById("email").value.trim().toLowerCase(),
       consent: true,
@@ -109,6 +117,27 @@ form.addEventListener("submit", async (e) => {
     form.reset();
     formStatus.className = "form-status success";
     formStatus.textContent = "Inscrição realizada com sucesso! Sua vaga foi registrada.";
+
+    if (whatsappConfirmationArea && whatsappConfirmBtn) {
+      const whatsappMessage = 
+`Olá! Minha inscrição foi confirmada com sucesso. ✅
+
+ESCOLA DE MOÇOS E PROFETAS
+Tabernáculo de Profetas
+
+Nome: ${registeredFullName}
+
+📅 07/11 — das 16h às 22h
+📅 08/11 — das 08h às 11h
+
+📍 Vila Maria Alta — SP
+
+Minha vaga está registrada para a Escola de Moços e Profetas.`;
+
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+      whatsappConfirmBtn.href = whatsappUrl;
+      whatsappConfirmationArea.classList.remove("hidden");
+    }
   } catch (err) {
     console.error(err);
     formStatus.className = "form-status error";

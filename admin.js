@@ -51,10 +51,15 @@
   let allRegistrations = [];
   let isRecoveringPassword = false;
 
-  // Detectar se a URL contém tokens de recuperação
-  if (window.location.hash.includes("type=recovery") ||
-      window.location.search.includes("type=recovery")) {
+  // Detectar se a URL contém tokens REAIS de recuperação vindo do e-mail do Supabase
+  if ((window.location.hash.includes("type=recovery") && window.location.hash.includes("access_token")) ||
+      (window.location.search.includes("type=recovery") && window.location.search.includes("code="))) {
     isRecoveringPassword = true;
+  } else if (window.location.hash.includes("type=recovery") && !window.location.hash.includes("access_token")) {
+    // Se for apenas uma hash de teste residual na barra de endereço, limpa para não travar o login
+    if (window.history.replaceState) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
   }
 
   // Exibir a data de hoje no card de métricas
@@ -146,6 +151,12 @@
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Ao enviar o login diretamente, cancela qualquer estado pendente de recuperação
+    isRecoveringPassword = false;
+    if (window.history.replaceState && window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+
     const email = loginEmail.value.trim();
     const password = loginPassword.value;
 
@@ -161,28 +172,31 @@
     loginStatus.textContent = "";
 
     try {
+      console.log("Tentando login com:", email);
       const { data, error } = await supabaseClient.auth.signInWithPassword({
         email,
         password
       });
 
       if (error) {
+        console.error("Erro no signInWithPassword:", error);
         let msg = "Não foi possível autenticar.";
         if (error.message.includes("Invalid login credentials")) {
-          msg = "E-mail ou senha incorretos. Verifique suas credenciais.";
+          msg = "E-mail ou senha incorretos. Verifique os dados ou crie o usuário em Authentication > Users no Supabase.";
         } else if (error.message.includes("Email not confirmed")) {
-          msg = "Este e-mail ainda não foi confirmado no Supabase.";
+          msg = "Este e-mail ainda não foi confirmado. No painel do Supabase em Authentication > Users, confirme o usuário manualmente.";
         } else {
           msg = error.message;
         }
         throw new Error(msg);
       }
 
+      console.log("Login autorizado para:", data.user?.email);
       loginStatus.className = "auth-status success";
       loginStatus.textContent = "Login autorizado! Carregando painel...";
       showDashboard(data.user);
     } catch (err) {
-      console.error(err);
+      console.error("Falha no login:", err);
       loginStatus.className = "auth-status error";
       loginStatus.textContent = err.message;
     } finally {
@@ -211,6 +225,7 @@
       loginStatus.className = "auth-status";
       loginStatus.textContent = "Solicitando e-mail de recuperação...";
 
+      try {
         const targetRedirect = window.location.origin.includes("localhost")
           ? "http://localhost:3000/admin.html"
           : window.location.href.split("#")[0].split("?")[0];
