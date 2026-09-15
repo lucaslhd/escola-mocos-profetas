@@ -62,7 +62,7 @@ button, input { font: inherit; }
   inset: 0;
   background:
     linear-gradient(90deg, rgba(7,5,3,.94) 0%, rgba(7,5,3,.82) 48%, rgba(7,5,3,.32) 100%),
-    url("assets/folder-evento.png") center/cover no-repeat;
+    url("assets/folder-evento.png?v=2") center/cover no-repeat;
   transform: scale(1.06);
   filter: saturate(.8);
 }
@@ -438,7 +438,7 @@ footer {
   .hero::before {
     background:
       linear-gradient(180deg, rgba(7,5,3,.94) 0%, rgba(7,5,3,.82) 40%, rgba(7,5,3,.94) 100%),
-      url("assets/folder-evento.png") center top / cover no-repeat;
+      url("assets/folder-evento.png?v=2") center top / cover no-repeat;
     background-position: center top;
     background-size: cover;
     transform: scale(1.03);
@@ -461,7 +461,7 @@ footer {
   .hero::before {
     background:
       linear-gradient(180deg, rgba(7,5,3,.96) 0%, rgba(7,5,3,.86) 35%, rgba(7,5,3,.96) 100%),
-      url("assets/folder-evento.png") center 10% / cover no-repeat;
+      url("assets/folder-evento.png?v=2") center 10% / cover no-repeat;
     background-position: center 10%;
     background-size: cover;
   }
