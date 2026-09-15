@@ -323,6 +323,12 @@
     statToday.textContent = todayCount.toString();
   }
 
+  // Formatação do número de inscrição com no mínimo 3 dígitos
+  function formatRegNumber(num) {
+    if (num === null || num === undefined || num === "") return "—";
+    return String(num).padStart(3, "0");
+  }
+
   // Formatação de data em português
   function formatDate(isoString) {
     if (!isoString) return "—";
@@ -360,10 +366,11 @@
 
     const filtered = allRegistrations.filter((item) => {
       if (!query) return true;
+      const regNum = formatRegNumber(item.registration_number).toLowerCase();
       const name = (item.full_name || "").toLowerCase();
       const phone = (item.phone || "").toLowerCase();
       const email = (item.email || "").toLowerCase();
-      return name.includes(query) || phone.includes(query) || email.includes(query);
+      return regNum.includes(query) || name.includes(query) || phone.includes(query) || email.includes(query);
     });
 
     // Atualizar texto de contagem
@@ -378,7 +385,7 @@
     if (filtered.length === 0) {
       registrationsTbody.innerHTML = `
         <tr>
-          <td colspan="4" class="table-empty">
+          <td colspan="5" class="table-empty">
             ${query ? "Nenhum cadastro corresponde ao termo pesquisado." : "Nenhum cadastro encontrado."}
           </td>
         </tr>
@@ -387,6 +394,7 @@
     }
 
     const rowsHtml = filtered.map((item) => {
+      const regNumFormatted = formatRegNumber(item.registration_number);
       const dateFormatted = formatDate(item.created_at);
       const phoneInfo = formatPhone(item.phone);
       const phoneHtml = phoneInfo.link
@@ -400,6 +408,7 @@
 
       return `
         <tr>
+          <td class="td-num"><strong>${regNumFormatted}</strong></td>
           <td class="td-date">${dateFormatted}</td>
           <td class="td-name">${escapeHtml(item.full_name || "—")}</td>
           <td class="td-phone">${phoneHtml}</td>
@@ -450,12 +459,14 @@
       return;
     }
 
-    const headers = ["ID", "Data/Hora", "Nome Completo", "Telefone", "E-mail", "Consentimento LGPD", "Evento"];
+    const headers = ["Nº de Inscrição", "ID", "Data/Hora", "Nome Completo", "Telefone", "E-mail", "Consentimento LGPD", "Evento"];
     
     const rows = allRegistrations.map((item) => {
+      const numInscricao = formatRegNumber(item.registration_number);
       const dataHora = formatDate(item.created_at);
       const phoneInfo = formatPhone(item.phone);
       return [
+        numInscricao,
         item.id || "",
         dataHora,
         item.full_name || "",

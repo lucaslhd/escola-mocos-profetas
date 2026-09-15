@@ -380,43 +380,122 @@ input::placeholder { color:#7f6f5f; }
 
 .hidden { display: none !important; }
 
-.whatsapp-confirm-wrapper {
-  margin-top: 14px;
-}
-
-.btn--whatsapp {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  min-height: 52px;
-  padding: 0 20px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(38, 28, 17, 0.95), rgba(18, 13, 8, 0.98));
+.voucher-card {
   border: 1px solid var(--gold);
-  color: var(--gold-light);
-  font-family: inherit;
+  background: linear-gradient(180deg, rgba(32, 22, 14, 0.96), rgba(16, 11, 7, 0.98));
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 35px rgba(213, 163, 70, 0.14);
+  animation: voucherFadeIn 0.4s ease-out;
+}
+@keyframes voucherFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.voucher-header {
+  text-align: center;
+}
+.voucher-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  background: rgba(46, 196, 122, 0.12);
+  border: 1px solid rgba(46, 196, 122, 0.4);
+  border-radius: 50px;
+  color: #5fe29e;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.voucher-number-block {
+  margin-top: 18px;
+}
+.voucher-number-label {
+  display: block;
+  font-size: 0.76rem;
   font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  cursor: pointer;
-  box-sizing: border-box;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-
-.btn--whatsapp:hover {
-  background: linear-gradient(135deg, rgba(55, 39, 23, 0.98), rgba(26, 18, 11, 0.98));
-  border-color: #ffd875;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(213, 163, 70, 0.3);
+.voucher-number {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3rem, 7vw, 4.2rem);
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1.1;
+  margin-top: 4px;
+  text-shadow: 0 0 24px rgba(213, 163, 70, 0.35);
 }
-
-.btn--whatsapp:active {
-  transform: translateY(0);
+.voucher-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 22px 0;
+  opacity: 0.7;
+}
+.voucher-greeting {
+  text-align: center;
+  color: var(--cream);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 20px 0;
+}
+.voucher-greeting strong {
+  color: var(--gold-light);
+}
+.voucher-event-info {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(213, 163, 70, 0.22);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.voucher-event-title {
+  font-family: 'Cinzel', serif;
+  color: var(--gold-light);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 4px 0;
+}
+.voucher-event-sub {
+  color: var(--muted);
+  font-size: 0.86rem;
+  margin: 0 0 16px 0;
+}
+.voucher-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.voucher-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cream);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.voucher-detail-icon {
+  font-size: 1rem;
+}
+.voucher-confirmed-tag {
+  text-align: center;
+  color: var(--gold-light);
+  background: rgba(213, 163, 70, 0.08);
+  border: 1px solid rgba(213, 163, 70, 0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.voucher-actions {
+  margin-top: 8px;
 }
 
 footer {
@@ -476,6 +555,10 @@ footer {
   .pillars { grid-template-columns:1fr; }
   .pillars span { border-right:0; }
   .form-card { padding:20px; }
+  .voucher-card { padding: 22px 16px; }
+  .voucher-number { font-size: 3.2rem; }
+  .voucher-event-info { padding: 16px 12px; }
+  .voucher-detail-item { font-size: 0.85rem; }
   .sound-toggle {
     bottom: 12px;
     right: 12px;

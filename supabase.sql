@@ -19,18 +19,23 @@ create unique index if not exists registrations_event_phone_unique
 
 alter table public.registrations enable row level security;
 
--- Permite ao site público SOMENTE inserir novas inscrições.
+-- Permite inscrições tanto para visitantes públicos (anon) quanto para usuários/administradores autenticados.
 drop policy if exists "public can insert registrations" on public.registrations;
-create policy "public can insert registrations"
+drop policy if exists "anyone can insert registrations" on public.registrations;
+create policy "anyone can insert registrations"
 on public.registrations
 for insert
-to anon
+to anon, authenticated
 with check (
   consent = true
   and char_length(full_name) >= 3
   and char_length(phone) >= 10
   and char_length(email) >= 5
 );
+
+-- Coluna registration_number com sequence (preenchida automaticamente pelo banco)
+-- create sequence if not exists public.registrations_seq start 1;
+-- alter table public.registrations add column if not exists registration_number bigint default nextval('public.registrations_seq');
 
 -- Não crie policy de SELECT para anon.
 -- Assim os visitantes não conseguem ler a lista de inscritos.

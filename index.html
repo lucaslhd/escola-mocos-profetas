@@ -148,19 +148,56 @@
           </button>
 
           <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-
-          <div class="whatsapp-confirm-wrapper hidden" id="whatsappConfirmationArea">
-            <a
-              id="whatsappConfirmBtn"
-              class="btn--whatsapp"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              📲 Receber confirmação no WhatsApp
-            </a>
-          </div>
         </form>
+
+        <!-- COMPROVANTE ELEGANTE (Substitui a área do formulário após confirmação no Supabase) -->
+        <div class="voucher-card hidden" id="voucherCard">
+          <div class="voucher-header">
+            <div class="voucher-badge">✓ INSCRIÇÃO CONFIRMADA</div>
+            <div class="voucher-number-block">
+              <span class="voucher-number-label">Nº DE INSCRIÇÃO</span>
+              <span class="voucher-number" id="voucherNumber">001</span>
+            </div>
+          </div>
+
+          <div class="voucher-divider"></div>
+
+          <div class="voucher-body">
+            <p class="voucher-greeting">
+              <strong id="voucherName">Participante</strong>, sua inscrição foi realizada com sucesso!
+            </p>
+
+            <div class="voucher-event-info">
+              <h3 class="voucher-event-title">ESCOLA DE MOÇOS E PROFETAS</h3>
+              <p class="voucher-event-sub">Tabernáculo de Profetas</p>
+
+              <div class="voucher-details">
+                <div class="voucher-detail-item">
+                  <span class="voucher-detail-icon">📅</span>
+                  <span>07/11 — 16h às 22h</span>
+                </div>
+                <div class="voucher-detail-item">
+                  <span class="voucher-detail-icon">📅</span>
+                  <span>08/11 — 08h às 11h</span>
+                </div>
+                <div class="voucher-detail-item">
+                  <span class="voucher-detail-icon">📍</span>
+                  <span>Vila Maria Alta — SP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="voucher-confirmed-tag">
+              SUA VAGA ESTÁ CONFIRMADA
+            </div>
+          </div>
+
+          <div class="voucher-actions">
+            <button class="btn btn--primary btn--full" id="downloadVoucherBtn" type="button">
+              ⬇ Baixar comprovante
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -177,6 +214,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

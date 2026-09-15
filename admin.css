@@ -519,6 +519,14 @@ h1 span, h2 span {
   color: var(--cream);
   vertical-align: middle;
 }
+.td-num {
+  font-family: 'Cinzel', monospace, serif;
+  font-weight: 700;
+  color: var(--gold-light);
+  white-space: nowrap;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
+}
 .td-date {
   color: var(--muted);
   font-size: .86rem;
