@@ -435,6 +435,17 @@ footer {
 .footer__content span, .footer__content small { color:var(--muted); }
 
 @media (max-width: 980px) {
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(7,5,3,.94) 0%, rgba(7,5,3,.82) 40%, rgba(7,5,3,.94) 100%),
+      url("assets/folder-evento.png") center top / cover no-repeat;
+    background-position: center top;
+    background-size: cover;
+    transform: scale(1.03);
+  }
+  .hero__overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(7,5,3,.82) 100%);
+  }
   .hero__grid { grid-template-columns: 1fr; }
   .hero__poster { max-width:520px; margin: 0 auto; }
   .themes-grid { grid-template-columns: repeat(2,1fr); }
@@ -447,6 +458,16 @@ footer {
 }
 
 @media (max-width: 640px) {
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(7,5,3,.96) 0%, rgba(7,5,3,.86) 35%, rgba(7,5,3,.96) 100%),
+      url("assets/folder-evento.png") center 10% / cover no-repeat;
+    background-position: center 10%;
+    background-size: cover;
+  }
+  .hero__overlay {
+    background: linear-gradient(180deg, rgba(7,5,3,.45) 0%, rgba(7,5,3,.88) 100%);
+  }
   .container { width:min(100% - 26px, 1160px); }
   .hero { min-height:auto; }
   .hero__grid { padding: 56px 0; gap:36px; }
